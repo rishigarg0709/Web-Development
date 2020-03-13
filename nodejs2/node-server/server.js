@@ -20,7 +20,7 @@ server.get("/hello/:name", (req,res,next)=>{
 })
 
 
-// A 404 ERROR Middleware
+// A 404 ERROR Middlewar
 server.use((req,res)=>{
     res.send("<h2>404 Not Found !!</h2>")
 })

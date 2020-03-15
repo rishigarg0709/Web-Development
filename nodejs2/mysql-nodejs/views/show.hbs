@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>show</title>
+</head>
+<body>
+    <a href="/">Add Data</a>
+    <table border="1" cellspaceing = "10" cellpadding="10">
+        <tr>
+            <th>name</th>
+            <th>email</th>
+        </tr>
+        {{#each persons as |person|}} 
+        <tr>
+           <td>{{person.name}}</td>
+           <td>{{person.email}}</td>
+        </tr>
+        {{/each}}
+    </table>
+</body>
+</html>

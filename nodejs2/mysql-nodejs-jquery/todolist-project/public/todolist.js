@@ -11,6 +11,7 @@ $(function(){
             todolist.append('<li>' + item.name + '</li>')
         }
     }
+    
 
     $.get('/api/task',function(data){
         refresh_task(data)

@@ -3,14 +3,95 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="../public/.js"></script>
+    <script src="./public/root.js"></script>
+    <title>Login Page</title>
 </head>
-<body>
-    <form method="POST" action="/api/login">
-    <input type="text" placeholder="Email-ID" name="emailid"><br>
-    <input type="password" placeholder="Password" name="password"><br>
-    <input type="submit" value="LOGIN"> 
-    <a href="/api/signup">Not a user yet?</a> 
-    </form>
+<body style="background-color:#e7eeef;">
+    <br><br><br>
+    <div class="row mt-5">
+    <div class="col-md-5 m-auto">
+        <div class="card card-body">
+         <h1 class="text-center mb-3"><i class="fas fa-sign-in-alt"></i>Login</h1>
+        {{#if success_msg}}
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{success_msg}}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        {{/if}}
+        {{#if error}}
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                {{error}}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        {{/if}}
+        <form action="/api/login" method="POST" class="needs-validation" id="Formid" novalidate>
+            <div class="form-group">
+            <label for="email">Email</label>
+            <input
+                type="email"
+                id="email"
+                name="emailid"
+                class="form-control"
+                placeholder="Enter Email"
+                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}"
+            />
+            <div class="valid-feedback">
+                Looks good!
+            </div>
+            <div class="invalid-feedback">
+                Please enter a valid email-id
+            </div>
+            </div>
+            <div class="form-group">
+            <label for="password">Password</label>
+            <input
+                type="password"
+                id="password"
+                name="password"
+                class="form-control"
+                placeholder="Enter Password"
+                pattern="(?=.*\d)(?=.*[a-z]).{6,15}" 
+            />
+            <div class="valid-feedback">
+                Looks good!
+            </div>
+            <div class="invalid-feedback">
+                Must contain 6 to 15 characters which msut contain at least one number, and one letter
+            </div>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Login</button>
+        </form>
+        <p class="lead mt-4">
+            No Account? <a href="/api/signup">Register</a>
+        </p>
+        </div>
+    </div>
+    </div>
 </body>
 </html>
+
+<script>
+(function() {
+  'use strict';
+  window.addEventListener('load', function() {
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.getElementsByClassName('needs-validation');
+    // Loop over them and prevent submission
+    var validation = Array.prototype.filter.call(forms, function(form) {
+      form.addEventListener('submit', function(event) {
+        if (form.checkValidity() === false) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+      }, false);
+    });
+  }, false);
+})();
+</script>

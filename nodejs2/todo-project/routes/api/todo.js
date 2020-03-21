@@ -1,19 +1,19 @@
 const route=require('express').Router()
 
 route.get("/",(req,res)=>{
-    if(req.user){
-        res.redirect('api/todo/'+req.user.id)
+    
+    if(req.user)
+    {
+        res.render('todo', {
+            user: req.user
+          })
     }
-    else{
-        res.redirect('/')
-    }
+    else
+    res.redirect('/api/login')
 })
 
-route.get("/:id", (req,res)=>{
-    id=req.params.id
-    res.send("hello "+id)
-})
 
 exports=module.exports={
     route
 }
+
